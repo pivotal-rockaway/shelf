@@ -19,7 +19,3 @@ development:
 test:
   <<: *default
   database: db/test.mysql
-
-production:
-  <<: *default
-  database: db/production.mysql
