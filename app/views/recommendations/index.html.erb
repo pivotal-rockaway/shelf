@@ -1,0 +1,9 @@
+<%= link_to "New Recommendation", new_recommendation_path, class: "btn btn-primary btn-large" %>
+<h1>Recommendations For You</h1>
+<div class="recommendations-list">
+  <% @recommendations.each do |recommendation|  %>
+    <ul class="recommendation">
+      <li><h3><%= "#{recommendation.title} : #{recommendation.url}" %></h3></li>
+    </ul>
+  <% end %>
+</div>

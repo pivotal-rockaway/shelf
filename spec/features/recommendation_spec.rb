@@ -24,7 +24,7 @@ describe "Recommendations", type: :feature do
     it "renders a form with title and url" do
       visit '/'
       click_on "New Recommendation"
-      expect(page).to have_text("Create new recommendation")
+      expect(page).to have_text("Your new recommendation")
       fill_in "Title", with: "Brooklyn"
       fill_in "Url", with: "http://imdb.com/brooklyn"
       click_on "Create"

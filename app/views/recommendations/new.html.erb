@@ -1,8 +1,10 @@
-Create new recommendation
 <%= form_for @recommendation  do |f|%>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <%= f.submit "Create" %>
+  <fieldset>
+    <legend>Your new recommendation</legend>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+    <%= f.submit "Create", class: "btn btn-success" %>
+  </fieldset>
 <% end %>
