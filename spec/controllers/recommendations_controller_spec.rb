@@ -9,6 +9,14 @@ describe RecommendationsController do
     end
   end
 
+  describe "index" do
+    it "returns all recommendations" do
+      get :index
+      3.times {|n| Recommendation.create(title: "title #{n}", url: "http://imdb.com/title-#{n}")}
+      expect(assigns(:recommendations).collect(&:title)).to match_array(["title 0", "title 1", "title 2"])
+    end
+  end
+
   describe "create" do
     before do
       post :create, recommendation: {title: "Batman vs Superman", url: "http://www.imdb.com/title/tt2975590/"}
