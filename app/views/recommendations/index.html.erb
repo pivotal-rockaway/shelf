@@ -3,7 +3,9 @@
 <div class="recommendations-list">
   <% @recommendations.each do |recommendation|  %>
     <ul class="recommendation">
-      <li><h3><%= "#{recommendation.title} : #{recommendation.url} : #{recommendation.tag}" %></h3></li>
+      <li><h3><%= "#{recommendation.title} : #{recommendation.url} : #{recommendation.tag}"%>
+        <%= link_to "+#{recommendation.likes}", recommendation_likes_path(recommendation) %>
+      </h3></li>
     </ul>
   <% end %>
 </div>

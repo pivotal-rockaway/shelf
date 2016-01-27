@@ -19,8 +19,21 @@ describe "Recommendations", type: :feature do
       expect(page).to have_text("Recommendations For You")
       expect(page).to have_text("Brooklyn : http://imdb.com/brooklyn : #Movies")
       expect(page).to have_text("Avengers : http://youtube.com/avengers : #Fantasy")
+      expect(page).to have_link("+1")
     end
-  end
+
+    it "increment likes" do
+      visit '/'
+      save_and_open_page
+      click_on "New Recommendation"
+      fill_in "Title", with: "Brooklyn Bridge"
+      fill_in "Url", with: "http://www.brooklynbridge.com"
+      click_on "Create"
+      visit '/'
+      click_on "+1"
+    end
+
+end
 
   describe "/recommendations/new" do
     it "renders a form with title and url" do

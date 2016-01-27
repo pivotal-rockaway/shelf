@@ -37,4 +37,19 @@ describe RecommendationsController do
       expect(response).to render_template(:show)
     end
   end
+
+  describe "likes" do
+    before do
+      @recommendation = Recommendation.create(title: "Hello", url: "http://www.google.com")
+      get :likes, recommendation_id: @recommendation.id
+    end
+
+    it "redirects to index page" do
+      expect(response).to redirect_to("/")
+    end
+
+    it "increment likes" do
+      expect(@recommendation.reload.likes).to eq 2
+    end
+  end
 end
