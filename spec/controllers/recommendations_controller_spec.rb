@@ -19,7 +19,7 @@ describe RecommendationsController do
 
   describe "create" do
     before do
-      post :create, recommendation: {title: "Batman vs Superman", url: "http://www.imdb.com/title/tt2975590/"}
+      post :create, recommendation: {title: "Batman vs Superman", url: "http://www.imdb.com/title/tt2975590/", tag: "#Movies"}
     end
 
     it "returns successful response" do
@@ -30,6 +30,7 @@ describe RecommendationsController do
       recommendation = assigns(:recommendation)
       expect(recommendation.title).to eq "Batman vs Superman"
       expect(recommendation.url).to eq "http://www.imdb.com/title/tt2975590/"
+      expect(recommendation.tag).to eq "#Movies"
     end
 
     it "renders show page" do
