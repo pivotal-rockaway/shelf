@@ -12,14 +12,15 @@ describe RecommendationsController do
   describe "index" do
     it "returns all recommendations" do
       get :index
-      3.times {|n| Recommendation.create(title: "title #{n}", url: "http://imdb.com/title-#{n}")}
+      3.times {|n| Recommendation.create(title: "title #{n}", description: "Desc #{n}", url: "http://imdb.com/title-#{n}")}
       expect(assigns(:recommendations).collect(&:title)).to match_array(["title 0", "title 1", "title 2"])
+      expect(assigns(:recommendations).collect(&:description)).to match_array(["Desc 0", "Desc 1", "Desc 2"])
     end
   end
 
   describe "create" do
     before do
-      post :create, recommendation: {title: "Batman vs Superman", url: "http://www.imdb.com/title/tt2975590/", tag: "#Movies"}
+      post :create, recommendation: {title: "Batman vs Superman", description: "Batman fights Superman in an epic battle", url: "http://www.imdb.com/title/tt2975590/", tag: "#Movies"}
     end
 
     it "returns successful response" do
@@ -29,6 +30,7 @@ describe RecommendationsController do
     it "creates a new recommendation" do
       recommendation = assigns(:recommendation)
       expect(recommendation.title).to eq "Batman vs Superman"
+      expect(recommendation.description).to eq "Batman fights Superman in an epic battle"
       expect(recommendation.url).to eq "http://www.imdb.com/title/tt2975590/"
       expect(recommendation.tag).to eq "#Movies"
     end

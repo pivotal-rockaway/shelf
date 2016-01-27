@@ -8,7 +8,7 @@ class RecommendationsController < ApplicationController
   end
 
   def create
-    @recommendation = Recommendation.create(params.require(:recommendation).permit([:title, :url, :tag, :likes]))
+    @recommendation = Recommendation.create(params.require(:recommendation).permit([:title, :description, :url, :tag, :likes]))
     render :show
   end
 

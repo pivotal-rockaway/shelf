@@ -11,11 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127155500) do
+ActiveRecord::Schema.define(version: 20160127215754) do
+
   create_table "recommendations", force: :cascade do |t|
-    t.string  "title", limit: 255
-    t.string  "url",   limit: 255
-    t.string "tag",   limit: 255
-    t.integer "likes", limit: 4,   default: 1
+    t.string  "title",       limit: 255
+    t.string  "url",         limit: 255
+    t.integer "likes",       limit: 4,   default: 1
+    t.string  "tag",         limit: 255
+    t.string  "description", limit: 255
   end
+
 end
