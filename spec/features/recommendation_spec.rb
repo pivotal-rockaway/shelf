@@ -27,7 +27,6 @@ describe "Recommendations", type: :feature do
 
     it "increment likes" do
       visit '/'
-      save_and_open_page
       click_on "New Recommendation"
       fill_in "Title", with: "Brooklyn Bridge"
       fill_in "Url", with: "http://www.brooklynbridge.com"

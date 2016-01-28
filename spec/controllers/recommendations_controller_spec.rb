@@ -19,24 +19,35 @@ describe RecommendationsController do
   end
 
   describe "create" do
-    before do
-      post :create, recommendation: {title: "Batman vs Superman", description: "Batman fights Superman in an epic battle", url: "http://www.imdb.com/title/tt2975590/", tag: "#Movies"}
+    context "success" do
+      before do
+        post :create, recommendation: {title: "Batman vs Superman", description: "Batman fights Superman in an epic battle", url: "http://www.imdb.com/title/tt2975590/", tag: "#Movies"}
+      end
+      it "returns successful response" do
+        expect(response).to be_success
+      end
+      it "creates a new recommendation" do
+        recommendation = assigns(:recommendation)
+        expect(recommendation.title).to eq "Batman vs Superman"
+        expect(recommendation.description).to eq "Batman fights Superman in an epic battle"
+        expect(recommendation.url).to eq "http://www.imdb.com/title/tt2975590/"
+        expect(recommendation.tag).to eq "#Movies"
+      end
+
+      it "renders show page" do
+        expect(response).to render_template(:show)
+      end
     end
 
-    it "returns successful response" do
-      expect(response).to be_success
-    end
+    context "error" do
+      before do
+        post :create, recommendation: {title: "", description: "Batman fights Superman in an epic battle", url: "", tag: "#Movies"}
+      end
 
-    it "creates a new recommendation" do
-      recommendation = assigns(:recommendation)
-      expect(recommendation.title).to eq "Batman vs Superman"
-      expect(recommendation.description).to eq "Batman fights Superman in an epic battle"
-      expect(recommendation.url).to eq "http://www.imdb.com/title/tt2975590/"
-      expect(recommendation.tag).to eq "#Movies"
-    end
-
-    it "renders show page" do
-      expect(response).to render_template(:show)
+      it "renders new template with errors" do
+        expect(assigns(:recommendation).errors).to_not be_empty
+        expect(response).to render_template(:new)
+      end
     end
   end
 

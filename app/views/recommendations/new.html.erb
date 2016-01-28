@@ -1,14 +1,33 @@
 <%= form_for @recommendation  do |f|%>
-  <fieldset>
+<fieldset>
     <legend>Your new recommendation</legend>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-    <%= f.label :url %>
-    <%= f.text_field :url %>
-    <%= f.label :tag %>
-    <%= f.text_field :tag %>
-    <%= f.submit "Create", class: "btn btn-success" %>
-  </fieldset>
+    <table><tr>
+        <% if !@recommendation.errors.messages[:title].blank? and !@recommendation.errors.messages[:url].blank? %>
+        <td><div>Title and Url cannot be empty</div></td>
+        <% elsif !@recommendation.errors.messages[:title].blank?%>
+        <td><div>Title cannot be empty</div></td>
+        <% elsif !@recommendation.errors.messages[:url].blank? %>
+        <td><div>Url cannot be empty</div></td>
+        <% end %></tr>
+    </table>
+    <div />
+
+    <div>
+        <table>
+           <tr>
+               <td>
+                <%= f.label :title %>
+                <%= f.text_field :title %>
+            </td><td>
+            <%= f.label :description %>
+            <%= f.text_field :description %></td><td>
+            <%= f.label :url %>
+            <%= f.text_field :url %></td><td>
+            <%= f.label :tag %>
+            <%= f.text_field :tag %></td><td>
+            <%= f.submit "Create", class: "btn btn-success" %></td></tr>
+        </table>
+    </div>
+
+</fieldset>
 <% end %>
