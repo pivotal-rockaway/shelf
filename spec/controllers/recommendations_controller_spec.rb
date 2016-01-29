@@ -68,8 +68,8 @@ describe RecommendationsController do
 
   describe "search" do
     it "returns recommendations matching tag" do
-      3.times {|n| Recommendation.create(title: "comedy #{n}", description: "description #{n}", tag: "comedy")}
-      3.times {|n| Recommendation.create(title: "tragedy #{n}", description: "description #{n}", tag: "tragedy")}
+      3.times {|n| Recommendation.create(title: "comedy #{n}", url: "http://google.com", description: "description #{n}", tag: "comedy")}
+      3.times {|n| Recommendation.create(title: "tragedy #{n}", url: "http://google.com", description: "description #{n}", tag: "tragedy")}
       get :search, query: "comedy"
       expect(response).to be_success
       expect(assigns(:search_results).collect(&:title)).to match_array(["comedy 0", "comedy 1", "comedy 2"])

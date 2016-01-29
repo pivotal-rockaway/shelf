@@ -16,13 +16,12 @@ class RecommendationsController < ApplicationController
     end
   end
 
-
-def likes
-  @recommendation = Recommendation.find(params[:recommendation_id])
-  @recommendation.likes += 1
-  @recommendation.save
-  redirect_to(root_url)
-end
+  def likes
+    @recommendation = Recommendation.find(params[:recommendation_id])
+    @recommendation.likes += 1
+    @recommendation.save
+    redirect_to(root_url)
+  end
 
   def search
     @search_results = Recommendation.where(tag: params[:query])
