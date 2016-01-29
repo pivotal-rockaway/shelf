@@ -17,3 +17,4 @@
 /tmp
 # git-config
 .pairs
+.DS_Store

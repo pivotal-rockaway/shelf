@@ -24,4 +24,8 @@ def likes
   redirect_to(root_url)
 end
 
+  def search
+    @search_results = Recommendation.where(tag: params[:query])
+  end
+
 end

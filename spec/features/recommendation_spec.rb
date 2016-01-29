@@ -3,20 +3,11 @@ require 'rails_helper'
 describe "Recommendations", type: :feature do
   describe "/" do
     it "show already created recommendations" do
+      create_recommendation({title: "Brooklyn", url: "http://imdb.com/brooklyn", tag: "#Movies"})
       visit '/'
-      click_on "New Recommendation"
-      fill_in "Title", with: "Brooklyn"
-      fill_in "Description", with: " "
-      fill_in "Url", with: "http://imdb.com/brooklyn"
-      fill_in "Tag", with: "#Movies"
-      click_on "Create"
-      visit '/'
-      click_on "New Recommendation"
-      fill_in "Title", with: "Avengers"
-      fill_in "Description", with: " "
-      fill_in "Url", with: "http://youtube.com/avengers"
-      fill_in "Tag", with: "#Fantasy"
-      click_on "Create"
+      expect(page).to have_text("Recommendations For You")
+      expect(page).to have_text("Brooklyn : : http://imdb.com/brooklyn : #Movies")
+      create_recommendation({title: "Avengers", url: "http://youtube.com/avengers", tag: "#Fantasy"})
       visit '/'
       expect(page).to have_text("Recommendations For You")
       expect(page).to have_text("Brooklyn : : http://imdb.com/brooklyn : #Movies")
@@ -34,8 +25,7 @@ describe "Recommendations", type: :feature do
       visit '/'
       click_on "+1"
     end
-
-end
+  end
 
   describe "/recommendations/new" do
     it "renders a form with title, description and url" do
